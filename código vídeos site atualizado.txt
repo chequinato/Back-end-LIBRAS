@@ -1,4 +1,4 @@
-HTML:
+HTML
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +17,9 @@ HTML:
 
 <div class="category-container">
     <button class="category-button" data-category="todas">Todas</button>
-    <button class="category-button" data-category="categoria1">Categoria 1</button>
-    <button class="category-button" data-category="categoria2">Categoria 2</button>
-    <!-- Adicione mais categorias conforme necessário -->
+    <button class="category-button" data-category="pronomes">Pronomes</button>
+    <button class="category-button" data-category="cumprimentos">Cumprimentos</button>
+    <button class="category-button" data-category="escola">Escola</button>
 </div>
 
 <div class="videos" id="videos-container"></div>
@@ -27,72 +27,122 @@ HTML:
 <script src="main.js"></script>
 </body>
 </html>
+ --------------------------------------------------------------------
 
- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CSS
 
-CSS:
+body {
+    font-family: Arial, sans-serif;
+}
 
 .videos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 iframe {
-  padding: 1rem;
+    padding: 1rem;
 }
 
 .search-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 #search-input {
-  padding: 10px;
-  font-size: 16px;
+    padding: 10px;
+    font-size: 16px;
 }
 
 #search-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .category-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .category-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
 }
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/* Estilo da caixa (BOX) */
+.category-button.box {
+    border: 2px solid #007BFF;
+    background-color: #f9f9f9;
+    color: #007BFF;
+    transition: all 0.3s ease-in-out;
+}
 
-JAVASCRIPT:
+.category-button.box:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: scale(1.05);
+}
+ 
+-------------------------------------------------------
+JS
 
 const allVideos = [
     {
-        title: "Teste 1 - casa",
-        link: "https://www.youtube.com/watch?v=tVtclOJuGnM"
+        title: "Altura",
+        link: "https://www.youtube.com/watch?v=OdUxIkLQJ_I",
+        category: "cumprimentos"
     },
     {
-        title: "Teste 2 - casa",
-        link: "https://www.youtube.com/watch?v=wIonxZzgsl8"
+        title: "Boa Noite",
+        link: "https://www.youtube.com/watch?v=t-tSBYbasA8",
+        category: "cumprimentos"
     },
     {
-        title: "Teste 3",
-        link: "https://www.youtube.com/watch?v=szuof33c1aM"
+        title: "Boa Tarde",
+        link: "https://www.youtube.com/watch?v=XxpspxWUeWI",
+        category: "cumprimentos"
     },
     {
-        title: "Teste 4",
-        link: "https://www.youtube.com/watch?v=N4UAPm5Ok6U&feature=youtu.be"
-    }
+        title: "Bom Dia",
+        link: "https://www.youtube.com/watch?v=hzEMKmxmsMU",
+        category: "cumprimentos"
+    },
+    {
+        title: "Com Licença - Por Favor",
+        link: "https://www.youtube.com/watch?v=sE9hcDDzSQM",
+        category: "cumprimentos"
+    },
+    {
+        title: "Conhecer",
+        link: "https://www.youtube.com/watch?v=uiJQDIEfnZ0",
+        category: "cumprimentos"
+    },
+    {
+        title: "Cumprimento",
+        link: "https://www.youtube.com/watch?v=R6ieruhhia8",
+        category: "cumprimentos"
+    },
+    {
+        title: "De Nada",
+        link: "https://www.youtube.com/watch?v=0npVuMFN0yw",
+        category: "cumprimentos"
+    },
+    {
+        title: "Desculpe",
+        link: "https://www.youtube.com/watch?v=FVqD0yqnNCg",
+        category: "cumprimentos"
+    },
+    {
+        title: "idade",
+        link: "https://www.youtube.com/watch?v=n6L_rxdeHus",
+        category: "cumprimentos"
+    },
 ];
 
 // Função para exibir vídeos
@@ -109,7 +159,7 @@ const displayVideos = (videos) => {
         iframe.allowFullscreen = true;
         const id = video.link.split('v=')[1];
         iframe.setAttribute("src", `https://www.youtube.com/embed/${id}?controls=0&autoplay=1`);
-        
+
         videoDiv.appendChild(iframe);
         videosContainer.appendChild(videoDiv);
     });
@@ -123,12 +173,12 @@ const searchVideos = (query) => {
     displayVideos(filteredVideos);
 }
 
-// Função para filtrar vídeos por categoria
+// Função apara filtrar vídeos por categoria
 const filterVideosByCategory = (category) => {
     if (category === 'todas') {
         displayVideos(allVideos);
     } else {
-        const filteredVideos = allVideos.filter(item => item.title.toLowerCase().includes(category.toLowerCase()));
+        const filteredVideos = allVideos.filter(item => item.category === category);
         displayVideos(filteredVideos);
     }
 }
